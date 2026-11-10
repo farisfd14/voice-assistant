@@ -20,14 +20,12 @@ record mic → Whisper STT → Ollama (llama3.2:1b) → pyttsx3 TTS.
 | TTS | ~17000 ms |
 | **Total** | ~28000 ms |
 
-## Honest engineering notes
+## Latency: v1 vs v2 (VAD)
 
-- The fixed 6-second recording dominates total latency.
-  Real voice assistants use VAD (voice activity detection) to know
-  when you stopped speaking - that's the next milestone.
-- Ollama reports its own timing in `total_duration` / `eval_duration`.
-- v1 is deliberately simple (walkie-talkie). Each stage is a
-  measurable bottleneck, not a black box.
+| Version | Recording stage | How it knows you're done |
+|---|-----------------|---|
+| v1 (walkie-talkie) | ~6.0s fixed     | it doesn't — always waits 6s |
+| v2 (VAD) | ~4.2s measured  | silero-vad: stops ~1s after your last word |
 
 ## Setup
 1. `py - m pip install -r requirements.txt`
