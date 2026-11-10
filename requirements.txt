@@ -4,3 +4,5 @@ pyttsx3>=2.90
 openai-whisper>=20231117
 requests>=2.31.0
 pytest>=7.4.0
+silero-vad
+onnxruntime

@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 .idea/
 my_question.wav
+vad_test.wav
+q_v1.wav
+q_v2.wav

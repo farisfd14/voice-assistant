@@ -12,7 +12,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from record import record_question  # stage 1
+from record_vad import record_until_silence  # stage 1
 from stt import transcribe          # stage 2 (whisper model Loads at import)
 from brain import think             # stage 3
 from mouth import speak             # stage 4
@@ -23,7 +23,7 @@ WAV_PATH = "my_question.wav"
 def main() -> None:
     # --- stage 1: record -----------------------------------------------
     t0 = time.perf_counter()
-    record_question(WAV_PATH)
+    seconds = record_until_silence("my_question.wav")
     t_record = time.perf_counter() - t0
 
     # --- stage 2: speech -> text ---------------------------------------
